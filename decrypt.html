@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <style type="text/css">
+        body{
+            background-image: url("assets/img/backgrounds/1.jpg");
+            overflow:scroll;
+        }
+        .button-green
+        {
+            font-family: "Segoe UI","Segoe","Verdana";
+            background: #0f9e0a center top no-repeat;
+            background-image: linear-gradient(rgb(15, 158, 10), rgb(24, 105, 21));
+            overflow: hidden;
+            color: white;
+            border-radius: 5px;
+            width: 100px;
+            position: relative;
+            padding: 8px 10px 8px 10px;
+            margin-left:30px;
+        }
+
+        .button-green:hover
+        {
+            background: #0a8406 center top no-repeat;
+            background-image: linear-gradient(rgb(12, 141, 8), rgb(19, 88, 17));
+        }
+
+        #file-upload
+        {
+            opacity: 0;
+            width: 102px;
+            height: 35px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .navbar{
+            margin-top:5px;
+        }
+        section{
+            text-align:center;
+            margin-top:85px;
+
+        }
+
+        .panel-default {
+
+            margin-top:30px;
+            margin-left:100px;
+        }
+        .form-group.last {
+            margin-bottom:0px;
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Data Cryptography System</h1>
+            <p>Cryptography using standard DES algoritham.</p>
+        </div>
+    </div>
+</header>
+<nav role="navigation" class="navbar navbar-inverse">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+    </div>
+    <!-- Collection of nav links, forms, and other content for toggling -->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Profile <b class="caret"></b></a>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="create.html">Create Account</a></li>
+                    <li><a href="delete.html">Delete Account</a></li>
+                    <li class="divider"></li>
+                    <li><a href="passwordchange.html">Change Password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="exit.html">Exit</a></li>
+                </ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            </li>
+            <button style="background-color:#303030;" class="btn" data-toggle="modal" data-target=".bs-example-modal-lg">Logout</button>
+            <div style="margin-top:250px; color:black;" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header"><h3>Logout <i class="fa fa-lock"></i></h3></div>
+                        <div class="modal-body"><i class="fa fa-question-circle"></i><h3 style="display:inline;"> Are you sure you want to log-off?</h3></div>
+                        <div class="modal-footer" style="font-size:20px;"><a href="javascript:;" class="btn btn-primary btn-block">Logout</a></div>
+                    </div>
+                </div>
+            </div>
+        </ul>
+
+
+
+    </div>
+</nav>
+<section class="signin">
+
+    <h1>Select file to be Decrypted and Decryption key</h1><br>
+  <form id="myForm" method="post">
+      <div>
+        <lable style="font-size:20px;">Select Encrypted(.enc) file </lable>
+        <input type="text" id="path"  style="width:400px;margin-left:27px;"/>
+        <span class="button-green"> <input id="file-upload" type="file" value="Browse"/> Browse</span>
+    </div>
+      <div style="margin-top:20px;">
+          <lable style="font-size:20px;">Select Decryption key (.key) </lable>
+          <input type="text" style="width:400px;margin-left:14px;"/>
+          <span class="button-green"> <input class="file-upload" type="file" value="Browse" onchange="App.handleFileUpload(event)"/> Browse</span>
+      </div>
+          <div style="margin-top:40px;">
+        <button style="font-size:20px;margin-left:20px;" type="submit" class="btn">Decrypt</button>
+        <button style="font-size:20px;margin-left:20px;" type="submit" class="btn" onclick="goBack()">Back</button>
+        <button style="font-size:20px;margin-left:20px;" type="submit" class="btn" onclick="myFunction()" value="Reset form">Clear</button>
+        <button style="font-size:20px;margin-left:20px;" type="submit" class="btn">Exit</button>
+    </div>
+    </form>
+    <script>
+        document.getElementById('file-upload').onchange = uploadOnChange;
+
+        function uploadOnChange() {
+            var path = this.value;
+            var lastIndex = path.lastIndexOf("\\");
+            if (lastIndex >= 0) {
+                path = path.substring(lastIndex + 1);
+            }
+            document.getElementById('path').value = path;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+        function myFunction() {
+            document.getElementById("myForm").reset();
+        }
+    </script>
+
+
+
+
+</section>
+
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/scripts.js"></script>
+
+
+</body>
+</html>
